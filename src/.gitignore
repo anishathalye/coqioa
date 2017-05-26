@@ -1,0 +1,8 @@
+# Coq
+
+*.vo
+Makefile.coq
+Makefile_extract.coq
+*.glob
+*.v.d
+*.aux
