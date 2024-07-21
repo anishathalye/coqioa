@@ -6,7 +6,7 @@ If you have any questions about what's in this repository, feel free to contact 
 
 ## Citation
 
-```
+```bibtex
 @mastersthesis{athalye2017coqioa,
     author = {Anish Athalye},
     title = {{CoqIOA}: A Formalization of {IO} {Automata} in the {Coq} {Proof} {Assistant}},
