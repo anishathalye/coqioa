@@ -1,4 +1,3 @@
-Require Omega.
 Require Import Znumtheory.
 Require Import BinInt.
 Require Import List.
@@ -9,23 +8,6 @@ Tactic Notation "solve" "by" "contradiction" :=
   end
   || fail "because the goal is not solvable by contradiction.".
 
-Tactic Notation "rep_destruct_step" tactic(t) :=
-  match goal with
-  | H : _ |- _ => destruct H; t
-  end.
-
-Tactic Notation "rep_destruct" "1" tactic(t) :=
-  rep_destruct_step t.
-
-Tactic Notation "rep_destruct" "2" tactic(t) :=
-  rep_destruct_step (rep_destruct 1 t).
-
-Tactic Notation "rep_destruct" "2" tactic(t) :=
-  rep_destruct_step (rep_destruct 2 t).
-
-Tactic Notation "rep_destruct" tactic(t) :=
-  rep_destruct 1 t.
-
 (* solve by inversion adapted from Benjamin Pierce's Software Foundations *)
 
 Tactic Notation "solve_by_inversion_step" tactic(t) :=
@@ -34,14 +16,8 @@ Tactic Notation "solve_by_inversion_step" tactic(t) :=
   end
   || fail "because the goal is not solvable by inversion.".
 
-Tactic Notation "solve" "by" "inversion" "1" :=
-  solve_by_inversion_step idtac.
-Tactic Notation "solve" "by" "inversion" "2" :=
-  solve_by_inversion_step (solve by inversion 1).
-Tactic Notation "solve" "by" "inversion" "3" :=
-  solve_by_inversion_step (solve by inversion 2).
 Tactic Notation "solve" "by" "inversion" :=
-  solve by inversion 1.
+  solve_by_inversion_step idtac.
 
 (* --- *)
 

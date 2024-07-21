@@ -1,10 +1,8 @@
-# CoqIOA
+# CoqIOA [![Build Status](https://github.com/anishathalye/coqioa/workflows/CI/badge.svg)](https://github.com/anishathalye/coqioa/actions?query=workflow%3ACI)
 
 Source code for [CoqIOA: A Formalization of IO Automata in the Coq Proof Assistant](coqioa.pdf).
 
-This repository represents a snapshot of ongoing work. If you're doing anything
-based on this, you should probably contact me (aathalye@mit.edu) to see what's
-changed since this repository was published.
+If you have any questions about what's in this repository, feel free to contact me at aathalye@mit.edu.
 
 ## Citation
 

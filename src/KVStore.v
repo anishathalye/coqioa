@@ -9,8 +9,8 @@ Require Import Channel.
 
 Require Import List.
 Import ListNotations.
-Require Import Peano_dec.
-Require Import Arith.Even.
+Require Import Arith.Peano_dec.
+Require Import Arith.PeanoNat.
 
 Inductive API :=
 | Put (k : nat) (v : nat)
@@ -433,11 +433,11 @@ Module Sharded.
 
       (* input *)
       | inr (inl (Put k v)) =>
-        if even_odd_dec k then
+        if Nat.Even_Odd_dec k then
           st' = mkCoordState (re ++ [Req_Put k v]) ro r else
           st' = mkCoordState re (ro ++ [Req_Put k v]) r
       | inr (inl (Get k)) =>
-        if even_odd_dec k then
+        if Nat.Even_Odd_dec k then
           st' = mkCoordState (re ++ [Req_Get k]) ro r else
           st' = mkCoordState re (ro ++ [Req_Get k]) r
 

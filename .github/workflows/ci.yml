@@ -1,0 +1,19 @@
+name: CI
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 8 * * 6'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: coq-community/docker-coq-action@v1
+        with:
+          coq_version: latest
+          before_script: |
+            sudo chown -R coq:coq .
+          script: |
+            cd src
+            make -j4 check

@@ -327,11 +327,13 @@ Module CounterNetworked.
                 ** repeat split; subst; eauto.
                 ** eapply Step_Internal with (int := inr (Reg_Get_Request)); [| eapply Step_None];
                      eauto; simpl; intuition.
+                   subst; auto.
              ++ eexists ((DReading2, _), (_, _)).
                 simpl; split.
                 ** repeat split; subst; eauto.
                 ** eapply Step_Internal with (int := inr (Reg_Get_Request)); [| eapply Step_None];
                      eauto; simpl; intuition.
+                   subst; auto.
           -- destruct s1'_cpc; destruct s1'_rpc; try tauto;
                destruct s2'_cpc;
                cleanup;

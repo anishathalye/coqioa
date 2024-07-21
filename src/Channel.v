@@ -4,6 +4,7 @@ Require Import ListOps.
 Require Import Simulation.
 Require Import Automation.
 
+Require Import Lia.
 Require Import List.
 Require Import Permutation.
 Import ListNotations.
@@ -215,8 +216,8 @@ Module Channel.
       - intros n Hlt Hct.
         inversion Hct.
       - intros n Hlt Hct.
-        inversion Hct; intuition; subst.
-        eauto.
+        inversion Hct; intuition; subst; eauto.
+        lia.
     Qed.
 
     Lemma is_range_contains :

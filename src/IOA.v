@@ -86,32 +86,32 @@ Section Composition.
   Definition Comp_StateType : Type := a1.(StateType) * a2.(StateType).
 
   Definition Comp_start (st : Comp_StateType) : Prop :=
-    a1.(start) st.(fst) /\ a2.(start) st.(snd).
+    a1.(start) (fst st) /\ a2.(start) (snd st).
 
   Definition Comp_transition (st : Comp_StateType) (act : Comp_ActionType) (st' : Comp_StateType) : Prop :=
     match act with
     | inl act_int =>
       match act_int with
       | inl act_int_1 =>
-        a1.(transition) st.(fst) (inl act_int_1) st'.(fst) /\
-        st.(snd) = st'.(snd)
+        a1.(transition) (fst st) (inl act_int_1) (fst st') /\
+        (snd st) = (snd st')
       | inr act_int_2 =>
-        a2.(transition) st.(snd) (inl act_int_2) st'.(snd) /\
-        st.(fst) = st'.(fst)
+        a2.(transition) (snd st) (inl act_int_2) (snd st') /\
+        (fst st) = (fst st')
       end
     | inr act_ext =>
       let oact1 := actiontype_conv1 act_ext in
       let oact2 := actiontype_conv2 act_ext in
       match oact1, oact2 with
       | Some act1, Some act2 =>
-        a1.(transition) st.(fst) (inr act1) st'.(fst) /\
-        a2.(transition) st.(snd) (inr act2) st'.(snd)
+        a1.(transition) (fst st) (inr act1) (fst st') /\
+        a2.(transition) (snd st) (inr act2) (snd st')
       | Some act1, None =>
-        a1.(transition) st.(fst) (inr act1) st'.(fst) /\
-        st.(snd) = st'.(snd)
+        a1.(transition) (fst st) (inr act1) (fst st') /\
+        (snd st) = (snd st')
       | None, Some act2 =>
-        a2.(transition) st.(snd) (inr act2) st'.(snd) /\
-        st.(fst) = st'.(fst)
+        a2.(transition) (snd st) (inr act2) (snd st') /\
+        (fst st) = (fst st')
       | None, None =>
         st' = st
       end
@@ -220,7 +220,8 @@ Lemma valid_execution_fragment_join : forall {T} (def : AutomatonDef T) (s s' s'
     valid_execution_fragment _ s' s'' a' ->
     valid_execution_fragment _ s s'' (a ++ a').
 Proof.
-  induction 1; subst; simpl; intros; eauto.
+  intros T def s s' s'' a a' H.
+  induction H; subst; simpl; intros; eauto.
 Qed.
 
 Lemma valid_execution_fragment_join' : forall {T} (def : AutomatonDef T) (s s' s'' : def.(StateType)) a a' a'',

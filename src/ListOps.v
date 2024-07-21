@@ -1,7 +1,8 @@
 Require Import Automation.
-
 Require Import List.
 Import ListNotations.
+
+Require Import Lia.
 Require Import Permutation.
 
 Section Main.
@@ -69,6 +70,7 @@ Section Main.
     induction l; simpl; shallow.
     destruct (Aeq_dec a x); subst.
     destruct (Aeq_dec _ _); shallow.
+    lia.
     destruct (Aeq_dec _ _); shallow.
     simpl.
     destruct (Aeq_dec _ _); shallow.

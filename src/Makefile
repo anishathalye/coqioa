@@ -20,9 +20,9 @@ VS := $(MODULES:%=%.v)
 PROJ_NAME := CCDS
 COQ_MAKEFILE := coq_makefile
 
-.PHONY: coq clean
+.PHONY: check clean
 
-coq: Makefile.coq
+check: Makefile.coq
 	$(MAKE) -f $<
 
 Makefile.coq: Makefile $(VS)

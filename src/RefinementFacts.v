@@ -23,8 +23,8 @@ Theorem refines_comp_comm :
 Proof.
   intros ? ? ? ? ? mapA mapB.
   apply forward_simulation with (fun st st' =>
-                                   st.(fst) = st'.(snd) /\
-                                   st.(snd) = st'.(fst)).
+                                   (fst st) = (snd st') /\
+                                   (snd st) = (fst st')).
   split.
   - intros [? ?] [? ?].
     eexists (_, _); intuition; split; auto.
@@ -46,8 +46,8 @@ Lemma valid_execution_frag_comp :
     valid_execution_fragment
       (compose defA defB ExtType convA convB)
       init final acts ->
-    valid_execution_fragment defA init.(fst) final.(fst) (flatmap convA acts) /\
-    valid_execution_fragment defB init.(snd) final.(snd) (flatmap convB acts).
+    valid_execution_fragment defA (fst init) (fst final) (flatmap convA acts) /\
+    valid_execution_fragment defB (snd init) (snd final) (flatmap convB acts).
 Proof.
   intros ? ? ? ? ? convA convB ? ? ? Hvalid.
   induction Hvalid; try solve [subst; intuition; eauto]; simpl in *.
